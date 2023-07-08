@@ -1,0 +1,13 @@
+{
+  "eslint.run": "onSave",
+  "javascript.validate.enable": false,
+  "files.exclude": {
+    "**/**.js": { "when": "$(basename).tsx" },
+    "**/*.js": { "when": "$(basename).ts" }
+  },
+  "search.exclude": {
+    "**/**.js": { "when": "$(basename).tsx" },
+    "**/*.js": { "when": "$(basename).ts" }
+  },
+  "editor.wrappingIndent": "same"
+}

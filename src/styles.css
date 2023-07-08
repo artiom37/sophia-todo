@@ -1,0 +1,96 @@
+body {
+  font-family: 'Segoe UI',-apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: url("./assets/Morning_background.jpg");
+  opacity: 0.75;
+  margin-left: 20% !important;
+  margin-right: 20% !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.SophiaTodoForm {
+  font-family: 'Segoe UI',-apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  margin-top: 5em;
+}
+
+input[type='text'] {
+  max-width: 450px;
+  width: 70%;
+  height: 40px;
+  border: 2px solid grey;
+  border-radius: 7px;
+  padding-left: 10px;
+}
+
+.btn-add-todo {  
+  max-width: 450px;
+  width: 70%;
+  height: 40px;  
+  text-align: center;
+  background-color: #477c52 !important;
+  color: white;  
+  margin-top: 15px;
+}
+
+.btn-selectAll,
+.btn-unselectAll {
+  /* background-color: #477c52 !important;   */
+  margin-right: 5px;
+  margin-bottom: 5px;;
+}
+
+.table-header {
+  text-align: center;
+}
+.table-header-task {
+  text-align: left;
+}
+
+.table-row-checkbox {  
+  text-align: center;
+  padding-top: 15px; 
+}
+/* ------ Customizing checkbox start-------*/
+.table-row-checkbox input[type="checkbox"] {   
+  /* Removing default appearance*/
+  -webkit-appearance: none;
+  appearance: none;
+  /* Creating custom checkbox design*/
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 0.3em;
+  border: 0.15em solid #477c52;
+  outline: none;
+  cursor: pointer;
+}
+
+.table-row-checkbox input[type="checkbox"]:checked {
+  background-color: #477c52;
+  position: relative;
+}
+.table-row-checkbox input[type="checkbox"]:checked::before {
+  content: "\2713";  /*check icon*/
+  color: white;
+  font-size: 1.0em;  
+  position: absolute;
+  right: 2px;
+  top: -4px;
+}
+.table-row-checkbox input[type="checkbox"]:focus {
+  box-shadow: 0 0 10px #477c52;
+}
+/* ------ Customizing checkbox end-------*/
+
+.table-row-task {
+  padding-top: 15px !important;
+}
