@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
-// import "./index.css";
 import { v4 as uuidv4 } from "uuid";
 import { Todo } from "./types/todoTypes";
 import TodoListDisplay from "./TodoListDisplay";
@@ -9,7 +8,6 @@ import {
   getTodosFromLocalStorage,
   updateTodosInLocalStorage,
 } from "./utils/updateLocalStorage";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import Button  from "react-bootstrap/Button";
 import SplitButton  from "react-bootstrap/SplitButton";
 
@@ -36,6 +34,7 @@ const SophiaTodoApp: React.FC = () => {
       id: uuidv4(),
       task: newTodo,
       completed: false,
+      isEditable: false,
     };
     addTodoToLocalStorage(todo);
     // setTodos([todo, ...todos]);
@@ -54,15 +53,28 @@ const SophiaTodoApp: React.FC = () => {
     setTodos(currentTodos => {
       const updatedTodos = currentTodos.map((todo) => {
         if(todo.id === todoId) {
-          return {...todo, completed};
+          return {...todo, completed: !completed};
         }
         return todo;
       });
       updateTodosInLocalStorage(updatedTodos);
       return updatedTodos;
-
     });
   };
+
+  const handleTaskUpdate = (todoId: string, newText: string) => {
+    setTodos(currentTodos => {
+      const updatedTodos = currentTodos.map(todo => {
+        if(todo.id === todoId){
+          todo.task = newText;
+        }
+        return todo;
+      });
+      updateTodosInLocalStorage(updatedTodos);
+      return updatedTodos;
+    })
+  }
+
   const handleOnRemove = (todoId: string) => {
     setTodos(currentTodos => {
       const updatedTodos =  currentTodos.filter(todo => todo.id !== todoId);
@@ -82,15 +94,14 @@ const SophiaTodoApp: React.FC = () => {
             onChange={handleInput}
             placeholder="Add To Do"
           />         
-        </header>
-      
-      <Button             
-          className="btn-add-todo"
-          type="submit"
-          variant="secondary"
-          onClick={handleOnSubmit}
-        >Add
-      </Button>
+        </header>      
+        <Button             
+            className="btn-add-todo"
+            type="submit"
+            variant="secondary"
+            onClick={handleOnSubmit}
+        > Add
+        </Button>
       </form>    
       <hr />
       <Button
@@ -99,7 +110,7 @@ const SophiaTodoApp: React.FC = () => {
           size="sm"
           type="button"
           onClick={handleSelectAll}
-        >Select All
+      > Select All
       </Button>
       <Button             
           className="btn-unselectAll"
@@ -107,12 +118,12 @@ const SophiaTodoApp: React.FC = () => {
           size='sm'
           type="reset"
           onClick={handleUnselectAll}
-        >Unselect All
-      </Button>
-      
+      >Unselect All
+      </Button>      
       <TodoListDisplay
         todos={todos}
         toggleTodo={handleToggleTodo}
+        onTaskUpdate={handleTaskUpdate}
         onRemove={handleOnRemove}
       />
     </>

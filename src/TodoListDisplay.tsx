@@ -1,16 +1,19 @@
-import React from "react";
+import React, {useState } from "react";
 import { Todo } from "./types/todoTypes";
 import './styles.css';
-import { Table } from "react-bootstrap";
+import { ButtonGroup, Table } from "react-bootstrap";
+import { updateTodosInLocalStorage } from "./utils/updateLocalStorage";
+import TodoListItem from "./TodoListItem";
 
 interface TodoListDisplayProps {
   todos: Todo[];
   toggleTodo: (todoId: string, completed: boolean) => void;
+  onTaskUpdate: (todoId: string, newTask: string) => void;
   onRemove: (todoId: string) => void;
 }
 
 const TodoListDisplay = (props: TodoListDisplayProps) => {
-  const { todos, toggleTodo, onRemove } = props;
+  const { todos, toggleTodo, onTaskUpdate, onRemove } = props;
 
   return (
     <Table striped hover responsive>
@@ -24,26 +27,12 @@ const TodoListDisplay = (props: TodoListDisplayProps) => {
       <tbody>
         {todos.map((todo: Todo) => {
           return (
-            <tr key={todo.id} >              
-              <td className="table-row-checkbox">                
-                  <input                               
-                    type="checkbox"
-                    checked={todo.completed}
-                    onChange={(e) => toggleTodo(todo.id, e.target.checked )}
-                    className={todo.completed ? "checked" : ""}
-                  />
-              </td>
-              <td className="table-row-task">
-                 {todo.task}
-              </td>
-              <td>
-                <button 
-                  className="btn btn-danger btn-sm" 
-                  onClick={() => onRemove(todo.id)}
-                >Remove
-                </button>
-              </td>
-            </tr>
+            <TodoListItem 
+              todo={todo} 
+              toggleTodo={() => toggleTodo(todo.id, todo.completed)}
+              onTaskUpdate={onTaskUpdate}
+              onRemove={() => onRemove(todo.id)}
+            />    
           );
         })}
       </tbody>

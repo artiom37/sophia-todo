@@ -44,7 +44,6 @@ input[type='text'] {
 
 .btn-selectAll,
 .btn-unselectAll {
-  /* background-color: #477c52 !important;   */
   margin-right: 5px;
   margin-bottom: 5px;;
 }
@@ -58,7 +57,6 @@ input[type='text'] {
 
 .table-row-checkbox {  
   text-align: center;
-  padding-top: 15px; 
 }
 /* ------ Customizing checkbox start-------*/
 .table-row-checkbox input[type="checkbox"] {   
@@ -71,7 +69,7 @@ input[type='text'] {
   border-radius: 0.3em;
   border: 0.15em solid #477c52;
   outline: none;
-  cursor: pointer;
+  cursor: pointer;  
 }
 
 .table-row-checkbox input[type="checkbox"]:checked {
@@ -91,6 +89,9 @@ input[type='text'] {
 }
 /* ------ Customizing checkbox end-------*/
 
-.table-row-task {
-  padding-top: 15px !important;
+.table-row-task {  
+  text-align: start;  
+}
+.table-row-buttons {
+  display: inline-flexbox;
 }
