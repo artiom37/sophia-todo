@@ -28,6 +28,7 @@ const TodoListDisplay = (props: TodoListDisplayProps) => {
         {todos.map((todo: Todo) => {
           return (
             <TodoListItem 
+              key={todo.id}
               todo={todo} 
               toggleTodo={() => toggleTodo(todo.id, todo.completed)}
               onTaskUpdate={onTaskUpdate}

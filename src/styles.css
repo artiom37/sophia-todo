@@ -92,6 +92,10 @@ input[type='text'] {
 .table-row-task {  
   text-align: start;  
 }
+.input-edit input[type="text"] {
+  max-width: 100%;
+  width: 100%;    
+}
 .table-row-buttons {
   display: inline-flexbox;
 }

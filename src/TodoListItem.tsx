@@ -34,12 +34,16 @@ const TodoListItem = (props: TodoListItemProp) => {
       </td>
       <td className="table-row-task">
         {isEditable === true ? 
-          <input 
-            type="text"
-            value={updateTask}
-            onChange={(e)=>setUpdateTask( e.target.value)}
-            onKeyDown={handleTaskUpdateDone}
-          /> : updateTask}
+          <div className="input-edit" >
+            <input             
+              type="text"
+              autoFocus
+              value={updateTask}
+              onChange={(e) => setUpdateTask(e.target.value)}
+              onKeyDown={handleTaskUpdateDone}              
+            /> 
+          </div>
+        : updateTask}
       </td>
       <td className="table-row-buttons">
         <ButtonGroup>

@@ -16,15 +16,14 @@ const SophiaTodoApp: React.FC = () => {
   const [todos, setTodos] = useState(getTodosFromLocalStorage());
   const [newTodo, setNewTodo] = useState<string>("");
 
-  // useEffect(() => {
-  //   localStorage.setItem("TASKS", JSON.stringify(todos));
-  // }, [todos]);
+  useEffect(() => {
+    updateTodosInLocalStorage(todos);
+  }, [todos]);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTodo(e.target.value);
   };
   const handleOnSubmit = () => {
-    // e.preventDefault();
     if (newTodo.trim().length === 0) {
       alert("Please enter the value");
       return;
@@ -37,8 +36,7 @@ const SophiaTodoApp: React.FC = () => {
       isEditable: false,
     };
     addTodoToLocalStorage(todo);
-    // setTodos([todo, ...todos]);
-    setTodos(getTodosFromLocalStorage());
+    setTodos([...todos, todo]);
     setNewTodo("");
   };
 
@@ -57,7 +55,6 @@ const SophiaTodoApp: React.FC = () => {
         }
         return todo;
       });
-      updateTodosInLocalStorage(updatedTodos);
       return updatedTodos;
     });
   };
@@ -70,15 +67,13 @@ const SophiaTodoApp: React.FC = () => {
         }
         return todo;
       });
-      updateTodosInLocalStorage(updatedTodos);
       return updatedTodos;
     })
   }
 
   const handleOnRemove = (todoId: string) => {
     setTodos(currentTodos => {
-      const updatedTodos =  currentTodos.filter(todo => todo.id !== todoId);
-      updateTodosInLocalStorage(updatedTodos);
+      const updatedTodos =  currentTodos.filter(todo => todo.id !== todoId);     
       return updatedTodos;
     })
   };
